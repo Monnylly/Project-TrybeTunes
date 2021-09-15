@@ -23,9 +23,9 @@ class Login extends React.Component {
 
   handleonClick(event) {
     event.preventDefault();
-    const { name } = this.state;
+    const { name, email, image, description } = this.state;
     this.setState({ loading: true });
-    createUser({ name })
+    createUser({ name, email, image, description })
       .then(() => {
         this.setState({ loading: false, logged: true });
       });
