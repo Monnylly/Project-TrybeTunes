@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
@@ -29,14 +30,17 @@ class Header extends Component {
 
   render() {
     const { userDados: { name }, loading } = this.state;
-    if (loading) return <Loading />;
     return (
       <section>
         <header data-testid="header-component">
-          <Link to="/search" data-testid="link-to-search"> Search </Link>
-          <Link to="/favorites" data-testid="link-to-favorites">Favoritos</Link>
-          <Link to="/profile" data-testid="link-to-profile">Profile</Link>
-          <span data-testid="header-user-name">{ name }</span>
+          <nav>
+            <Link to="/search" data-testid="link-to-search"> Search </Link>
+            <Link to="/favorites" data-testid="link-to-favorites">Favoritos</Link>
+            <Link to="/profile" data-testid="link-to-profile">Profile</Link>
+          </nav>
+          <span data-testid="header-user-name">
+            { loading ? <Loading /> : name }
+          </span>
         </header>
       </section>
     );
