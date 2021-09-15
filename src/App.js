@@ -1,11 +1,9 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Favorites from './pages/Favorites';
-// import Login from './pages/Login';
 import Search from './pages/Search';
 import Profile from './pages/Profile';
-import ProfileEdite from './pages/ProfileEdite';
+import ProfileEdit from './pages/profile/edit';
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Album from './pages/Album';
@@ -21,7 +19,7 @@ class App extends React.Component {
           <Route path="/album/:id" component={ Album } />
           <Route path="/favorites" component={ Favorites } />
           <Route path="/profile" component={ Profile } />
-          <Route path="/profile/edit" component={ ProfileEdite } />
+          <Route path="/profile/edit" component={ ProfileEdit } />
           <Route path="/" component={ NotFound } />
         </Switch>
       </BrowserRouter>
