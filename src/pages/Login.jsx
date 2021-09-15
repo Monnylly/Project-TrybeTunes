@@ -1,5 +1,6 @@
 // import { func } from 'prop-types';
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import Loading from '../components/Loading';
 import { createUser } from '../services/userAPI';
 
@@ -9,34 +10,32 @@ class Login extends React.Component {
     this.state = {
       name: '',
       loading: false,
+      logged: false,
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleonClick = this.handleonClick.bind(this);
   }
 
   handleChange(event) {
     this.setState({ name: event.target.value });
-    console.log(event.type);
   }
 
   handleonClick(event) {
     event.preventDefault();
-    this.setState({ loading: true }, () => {
-      createUser({
-        name: 'Name',
-        email: '',
-        image: '',
-        description: '',
+    const { name } = this.state;
+    this.setState({ loading: true });
+    createUser({ name })
+      .then(() => {
+        this.setState({ loading: false, logged: true });
       });
-    });
   }
 
   render() {
     const CARACTER_MIN = 3;
-    const { name, loading } = this.state;
-    if (loading) {
-      return <Loading />;
-    }
+    const { name, loading, logged } = this.state;
+    if (loading) return <Loading />;
+    if (logged) return <Redirect to="/search" />;
     return (
       <section>
         <div
