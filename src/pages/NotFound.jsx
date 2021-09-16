@@ -4,15 +4,12 @@ import Header from '../components/Header';
 class NotFund extends Component {
   render() {
     return (
-      <section>
+      <div
+        id="notFound"
+        data-testid="page-not-found"
+      >
         <Header />
-        <div
-          id="notFound"
-          data-testid="page-not-found"
-        >
-          NotFound
-        </div>
-      </section>
+      </div>
     );
   }
 }
