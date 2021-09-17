@@ -2,25 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class FormSearch extends Component {
-  constructor() {
-    super();
-    this.state = {
-      search: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange({ target }) {
-    const { value } = target;
-    this.setState({
-      search: value,
-    });
-  }
-
   render() {
+    console.log(this.props);
     const MIN_CARACTER = 2;
-    const { handleClick } = this.props;
-    const { search } = this.state;
+    const { onClick, onChange, value } = this.props;
+    console.log(onChange);
     return (
       <div>
         <form>
@@ -28,14 +14,14 @@ class FormSearch extends Component {
             data-testid="search-artist-input"
             name="search"
             type="text"
-            value={ search }
-            onChange={ this.handleChange }
+            value={ value }
+            onChange={ onChange }
           />
           <button
             data-testid="search-artist-button"
             type="submit"
-            disabled={ search.length < MIN_CARACTER }
-            onClick={ handleClick }
+            disabled={ value.length < MIN_CARACTER }
+            onClick={ onClick }
           >
             Pesquisar
           </button>
