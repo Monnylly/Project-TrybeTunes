@@ -16,17 +16,18 @@ class Search extends Component {
       search: '',
       habilit: true,
       loading: false,
-      resposta: [],
+      albuns: [],
       artista: '',
+      shouldShow: false,
     };
     this.handleClick = this.handleClick.bind(this);
-    this.clearResposta = this.clearResposta.bind(this);
+    // this.clearResposta = this.clearResposta.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillUnmount() {
-    this.clearResposta();
-  }
+  // componentWillUnmount() {
+  //   this.clearResposta();
+  // }
 
   // handleClick(event) {
   //   event.preventDefault();
@@ -45,41 +46,48 @@ class Search extends Component {
   //   });
   // }
 
-  async handleClick(event) {
-    event.preventDefault();
+  async handleClick() {
+    // event.preventDefault();
     const { search } = this.state;
+    const artista = search;
     this.setState = {
-      search: '',
+      // search: '',
       loading: true,
+      artista,
     };
-    const respostaApi = await searchAlbumApi(search);
-    console.log(respostaApi);
+    const albuns = await searchAlbumApi(artista);
+    // console.log(respostaApi);
 
     this.setState = {
-      resposta: respostaApi,
+      // resposta: respostaApi,
+      albuns,
+      search: '',
       loading: false,
+      shouldShow: true,
     };
     console.log(search);
   }
 
-  handleChange({ target }) {
-    const { value } = target;
-    this.setState({
-      search: value,
-    });
-  }
+  // handleChange({ target }) {
+  //   const { value } = target;
+  //   this.setState({
+  //     search: value,
+  //   });
+  // }
 
-  clearResposta() {
-    this.setState = ({
-      resposta: null,
-    });
+  handleChange({ target: { name, value } }) {
+    this.setState({ [name]: value });
   }
+  // clearResposta() {
+  //   this.setState = ({
+  //     resposta: null,
+  //   });
+  // }
 
   render() {
-    const { search, loading, habilit, resposta, artista } = this.state;
-    console.log(search, "search linha 79");
+    const { search, loading, albuns, artista, shouldShow, habilit } = this.state;
     return (
-      <div
+      <main
         id="search"
         data-testid="page-search"
       >
@@ -91,11 +99,11 @@ class Search extends Component {
           onClick={ this.handleClick }
         />}
 
-        { resposta && <CardAlbum
+        { shouldShow && <CardAlbum
           artista={ artista }
-          resposta={ resposta }
+          albuns={ albuns }
         />}
-      </div>
+      </main>
     );
   }
 }

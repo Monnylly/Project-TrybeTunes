@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ListAlbum from './ListaAlbum';
 
-export class CardAlbum extends Component {
+class CardAlbum extends Component {
   render() {
-    const { artista, resposta } = this.props;
-    const respostaAlbuns = resposta.map((album) => (<ListAlbum
+    const { artista, albuns } = this.props;
+    const respostaAlbuns = albuns.map((album) => (<ListAlbum
       key={ album.colletionId }
       album={ album }
     />));
@@ -13,11 +13,11 @@ export class CardAlbum extends Component {
       <div>
         <section>
           <p>
-            { `Resultado de albuns de: ${artista}`}
+            { `Resultado de álbuns de: ${artista}`}
           </p>
           <div>
-            { resposta.length === 0
-              ? <span>Nenhum album foi encontrado</span> : respostaAlbuns }
+            { albuns.length === 0
+              ? <span>Nenhum álbum foi encontrado</span> : respostaAlbuns }
           </div>
         </section>
       </div>
@@ -26,7 +26,7 @@ export class CardAlbum extends Component {
 }
 CardAlbum.propTypes = {
   artista: PropTypes.string,
-  resposta: PropTypes.array,
+  albuns: PropTypes.array,
 }.isRequired;
 
 export default CardAlbum;

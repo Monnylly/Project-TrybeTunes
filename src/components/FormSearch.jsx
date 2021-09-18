@@ -6,7 +6,7 @@ class FormSearch extends Component {
     console.log(this.props);
     const MIN_CARACTER = 2;
     const { onClick, onChange, value } = this.props;
-    console.log(onChange);
+    // console.log(onChange);
     return (
       <div>
         <form>
@@ -19,7 +19,7 @@ class FormSearch extends Component {
           />
           <button
             data-testid="search-artist-button"
-            type="submit"
+            type="button"
             disabled={ value.length < MIN_CARACTER }
             onClick={ onClick }
           >
@@ -32,10 +32,9 @@ class FormSearch extends Component {
   }
 }
 FormSearch.propTypes = {
-  handleChange: PropTypes.func,
-  handleSubmit: PropTypes.func,
-  enable: PropTypes.bool,
-  search: PropTypes.string,
+  onChange: PropTypes.func,
+  onClick: PropTypes.func,
+  value: PropTypes.string,
 }.isRequired;
 
 export default FormSearch;

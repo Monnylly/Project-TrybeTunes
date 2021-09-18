@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 class ListAlbum extends Component {
   render() {
-    const { resposta: { collectionId, coletionName } } = this.props;
-    console.log(collectionId);
+    const { album: { collectionId, coletionName } } = this.props;
+    // console.log(collectionId);
     return (
       <Link
         data-testid={ `link-to-album-${collectionId}` }
