@@ -21,11 +21,11 @@ class Login extends React.Component {
     this.setState({ name: event.target.value });
   }
 
-  handleonClick(event) {
-    event.preventDefault();
+  handleonClick = async () => {
+    // event.preventDefault();
     const { name, email, image, description } = this.state;
     this.setState({ loading: true });
-    createUser({ name, email, image, description })
+    await createUser({ name, email, image, description })
       .then(() => {
         this.setState({ loading: false, logged: true });
       });
@@ -50,12 +50,11 @@ class Login extends React.Component {
               id="name"
               type="text"
               data-testid="login-name-input"
-              value={ name }
+              // value={ name }
               onChange={ this.handleChange }
             />
           </label>
           <button
-            name="button"
             data-testid="login-submit-button"
             type="button"
             onClick={ this.handleonClick }

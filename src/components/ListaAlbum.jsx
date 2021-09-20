@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom';
 
 class ListAlbum extends Component {
   render() {
-    const { album: { collectionId, coletionName } } = this.props;
+    const { album: { collectionId, collectionName } } = this.props;
     // console.log(collectionId);
     return (
       <Link
         data-testid={ `link-to-album-${collectionId}` }
         to={ `/album/${collectionId}` }
       >
-        { coletionName }
+        { collectionName }
       </Link>
 
     );
   }
 }
 ListAlbum.propTypes = {
-  album: PropTypes.shape({ coletionName: PropTypes.string,
+  albuns: PropTypes.shape({ collectionName: PropTypes.string,
     collectionId: PropTypes.string }),
 }.isRequeride;
 
