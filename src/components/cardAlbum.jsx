@@ -4,25 +4,22 @@ import ListAlbum from './ListaAlbum';
 
 class CardAlbum extends Component {
   render() {
-    const { albuns } = this.props;
+    const { albuns, artist } = this.props;
     const respostaAlbuns = albuns.map((album) => (<ListAlbum
       key={ album.colletionId }
       album={ album }
     />));
-    const [nameArtist] = albuns;
 
     return (
       <div>
         <section>
           <div>
-            { albuns.length === 0
-              ? <span>Nenhum álbum foi encontrado</span>
-              : (
-                <>
-                  {`Resultado de álbuns de: ${nameArtist.artistName}`}
-                  { respostaAlbuns }
-                </>
-              )}
+            <p>{`Resultado de álbuns de: ${artist}`}</p>
+            <div>
+              { albuns.length === 0
+                ? <span>Nenhum álbum foi encontrado</span>
+                : respostaAlbuns }
+            </div>
           </div>
         </section>
       </div>

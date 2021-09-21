@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 class FormSearch extends Component {
   render() {
     const { onClick, onChange, value } = this.props;
-    console.log(this.props);
     const MIN_CARACTER = 2;
-    // console.log(onChange);
     return (
       <div>
         <form>

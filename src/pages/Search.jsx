@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import searchAlbumApi from '../services/searchAlbumsAPI';
 import FormSearch from '../components/FormSearch';
 import CardAlbum from '../components/cardAlbum';
+import Loading from '../components/Loading';
 
 class Search extends Component {
   constructor() {
@@ -14,23 +15,27 @@ class Search extends Component {
       habilit: true,
       loadingApi: false,
       albuns: [],
+      shouldShow: false,
+      artist: '',
     };
     this.handleClick = this.handleClick.bind(this);
-    // this.clearResposta = this.clearResposta.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick = async () => {
     const { search } = this.state;
+    const artist = search;
     this.setState({
       loadingApi: true,
+      artist,
     });
-    const albunsApi = await searchAlbumApi(search);
+    const albuns = await searchAlbumApi(artist);
 
     this.setState({
-      albuns: albunsApi,
+      albuns,
       search: '',
       loadingApi: false,
+      shouldShow: true,
     });
   }
 
@@ -42,22 +47,22 @@ class Search extends Component {
   }
 
   render() {
-    const { search, albuns, artista, habilit, loadingApi } = this.state;
+    const { search, albuns, artist, habilit, loadingApi, shouldShow } = this.state;
     return (
       <main
         id="search"
         data-testid="page-search"
       >
         <Header />
-        <FormSearch
+        { loadingApi ? <Loading /> : <FormSearch
           value={ search }
           habilit={ habilit }
           onChange={ this.handleChange }
           onClick={ this.handleClick }
-        />
+        />}
 
-        { loadingApi || <CardAlbum
-          artista={ artista }
+        { shouldShow && <CardAlbum
+          artist={ artist }
           albuns={ albuns }
         />}
       </main>
