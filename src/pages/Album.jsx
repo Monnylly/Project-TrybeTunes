@@ -25,6 +25,8 @@ class Album extends React.Component {
     this.getFavoriteSongs();
   }
 
+  // mateus me ajudou a construir essa função
+
   handleChange({ target }, musics) {
     const songNew = target.checked ? addSong : removeSong;
     this.setState({ loading: true }, async () => {
@@ -33,6 +35,7 @@ class Album extends React.Component {
     });
   }
 
+  //  duvidas e auxilio monitoria com Renata
   async getMusics() {
     const { match: { params: { id } } } = this.props;
     this.setState(async () => {
@@ -75,6 +78,7 @@ class Album extends React.Component {
           </h3>
         </div>
         <section>
+          {/* // dica slice Dayane */}
           { musics.slice(1).map((music) => (<MusicCard
             key={ music.trackId }
             musics={ music }

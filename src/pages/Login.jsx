@@ -21,6 +21,7 @@ class Login extends React.Component {
     this.setState({ name: event.target.value });
   }
 
+  // auxilio do Matheus Conrrado
   handleonClick = async () => {
     // event.preventDefault();
     const { name, email, image, description } = this.state;

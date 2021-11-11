@@ -17,7 +17,7 @@ class ListAlbum extends Component {
   }
 }
 ListAlbum.propTypes = {
-  albuns: PropTypes.shape({ collectionName: PropTypes.string,
+  album: PropTypes.shape({ collectionName: PropTypes.string,
     collectionId: PropTypes.string }),
 }.isRequeride;
 

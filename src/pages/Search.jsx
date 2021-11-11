@@ -15,7 +15,8 @@ class Search extends Component {
       habilit: true,
       loadingApi: false,
       albuns: [],
-      shouldShow: false,
+      mostra: false,
+      // dica Mateus estado mostra ou shouldShow
       artist: '',
     };
     this.handleClick = this.handleClick.bind(this);
@@ -35,7 +36,7 @@ class Search extends Component {
       albuns,
       search: '',
       loadingApi: false,
-      shouldShow: true,
+      mostra: true,
     });
   }
 
@@ -47,7 +48,7 @@ class Search extends Component {
   }
 
   render() {
-    const { search, albuns, artist, habilit, loadingApi, shouldShow } = this.state;
+    const { search, albuns, artist, habilit, loadingApi, mostra } = this.state;
     return (
       <main
         id="search"
@@ -61,7 +62,7 @@ class Search extends Component {
           onClick={ this.handleClick }
         />}
 
-        { shouldShow && <CardAlbum
+        { mostra && <CardAlbum
           artist={ artist }
           albuns={ albuns }
         />}
